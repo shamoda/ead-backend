@@ -20,10 +20,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    // User creation method
     public User insertUser(User user) {
         return userRepository.save(user);
     }
 
+    // User login method
     public User login(String nic, String password ) {
         User user = userRepository.findById(nic).get();
         if (user != null) {
@@ -35,6 +37,7 @@ public class UserService {
         return null;
     }
 
+    // Get all Users method
     public List<User> getAllusers() {
         return userRepository.findAll();
     }

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 /**
- * @author S.M. Jayasekara
- * @IT_number IT19161648
+ * @author Gimhana P.S.
+ * @IT_number IT19143682
  */
 @RestController
 @RequestMapping("/api/v1/queue")
@@ -31,6 +31,11 @@ public class QueueController {
     @PostMapping("/exit/{id}")
     public ResponseEntity<?> existQueue(@PathVariable String id) {
         return new ResponseEntity<>(service.exitQueue(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/leave/{id}")
+    public ResponseEntity<?> leaveQueue(@PathVariable String id) {
+        return new ResponseEntity<>(service.leaveQueue(id), HttpStatus.OK);
     }
 
     @GetMapping("/waiting-time/{regNo}/{type}")
