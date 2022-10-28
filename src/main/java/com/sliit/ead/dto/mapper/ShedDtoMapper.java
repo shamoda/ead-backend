@@ -11,18 +11,21 @@ import static com.sliit.ead.util.DateTimeUtil.getDateAsString;
  */
 public class ShedDtoMapper {
     public static ShedDto getShedDto(Shed shed) {
-        ShedDto shedDto = new ShedDto();
-        shedDto.setName(shed.getName());
-        shedDto.setAddress(shed.getAddress());
-        shedDto.setDieselAvailable(shed.isDieselAvailable());
-        shedDto.setDieselArrivalTime(getDateAsString(shed.getDieselArrivalTime()));
-        shedDto.setDieselQueueLength(shed.getDieselQueueLength());
-        shedDto.setDieselFinishTime(getDateAsString(shed.getDieselFinishTime()));
-        shedDto.setPetrolAvailable(shed.isPetrolAvailable());
-        shedDto.setPetrolArrivalTime(getDateAsString(shed.getPetrolArrivalTime()));
-        shedDto.setPetrolFinishTime(getDateAsString(shed.getPetrolFinishTime()));
-        shedDto.setPetrolQueueLength(shed.getPetrolQueueLength());
-        shedDto.setRegNo(shed.getRegNo());
-        return shedDto;
+        if (shed != null) {
+            ShedDto shedDto = new ShedDto();
+            shedDto.setName(shed.getName());
+            shedDto.setAddress(shed.getAddress());
+            shedDto.setDieselAvailable(shed.isDieselAvailable());
+            shedDto.setDieselArrivalTime(getDateAsString(shed.getDieselArrivalTime()));
+            shedDto.setDieselQueueLength(shed.getDieselQueueLength());
+            shedDto.setDieselFinishTime(getDateAsString(shed.getDieselFinishTime()));
+            shedDto.setPetrolAvailable(shed.isPetrolAvailable());
+            shedDto.setPetrolArrivalTime(getDateAsString(shed.getPetrolArrivalTime()));
+            shedDto.setPetrolFinishTime(getDateAsString(shed.getPetrolFinishTime()));
+            shedDto.setPetrolQueueLength(shed.getPetrolQueueLength());
+            shedDto.setRegNo(shed.getRegNo());
+            return shedDto;
+        }
+        return null;
     }
 }

@@ -9,14 +9,17 @@ import com.sliit.ead.model.Queue;
  */
 public class QueueDtoMapper {
     public static QueueDto getQueueDto(Queue queue) {
-        QueueDto queueDto = new QueueDto();
-        queueDto.setId(queue.getId());
-        queueDto.setRegNo(queueDto.getRegNo());
-        queueDto.setFuelType(queue.getFuelType());
-        queueDto.setLeftEarly(queue.getLeftEarly());
-        queueDto.setArrivedTime(queueDto.getArrivedTime());
-        queueDto.setNic(queueDto.getNic());
-        queueDto.setDepartTime(queueDto.getDepartTime());
-        return queueDto;
+        if (queue != null) {
+            QueueDto queueDto = new QueueDto();
+            queueDto.setId(queue.getId());
+            queueDto.setRegNo(queueDto.getRegNo());
+            queueDto.setFuelType(queue.getFuelType());
+            queueDto.setLeftEarly(queue.getLeftEarly());
+            queueDto.setArrivedTime(queueDto.getArrivedTime());
+            queueDto.setNic(queueDto.getNic());
+            queueDto.setDepartTime(queueDto.getDepartTime());
+            return queueDto;
+        }
+        return null;
     }
 }
