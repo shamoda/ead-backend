@@ -122,11 +122,11 @@ public class ShedService {
     public Shed queueOperation(String regNo, String fuelType, String operation) {
         Shed shed = mongoTemplate.findOne(Query.query(Criteria.where("_id").is(regNo)), Shed.class);
         if (fuelType.equalsIgnoreCase("petrol")) {
-            int tempLen;
+            int tempLen = 0;
             if (operation.equalsIgnoreCase("increment")) {
                 assert shed != null;
                 tempLen = shed.getPetrolQueueLength() + 1;
-            } else {
+            } else if (operation.equalsIgnoreCase("decrement")){
                 assert shed != null;
                 tempLen = shed.getPetrolQueueLength() - 1;
             }
