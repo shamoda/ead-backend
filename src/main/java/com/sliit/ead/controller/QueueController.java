@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-import static com.sliit.ead.dto.mapper.QueueDtoMapper.getQueueDto;
-
 /**
  * @author Gimhana P.S.
  * @IT_number IT19143682
@@ -27,7 +25,7 @@ public class QueueController {
     @PostMapping("/insert")
     public ResponseEntity<?> insertQueue(@RequestBody Queue queue) {
         queue.setId(String.valueOf(UUID.randomUUID()));
-        return new ResponseEntity<>(getQueueDto(service.insertQueue(queue)), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.insertQueue(queue), HttpStatus.CREATED);
     }
 
     @PostMapping("/exit/{id}")
