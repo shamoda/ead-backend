@@ -120,9 +120,10 @@ public class ShedService {
 
     // Method will perform queue length update operations according to the regNo, Fuel type and Operation
     public Shed queueOperation(String regNo, String fuelType, String operation) {
+        System.out.println(regNo + "-" + fuelType + "-" + operation);
         Shed shed = mongoTemplate.findOne(Query.query(Criteria.where("_id").is(regNo)), Shed.class);
+        int tempLen = 0;
         if (fuelType.equalsIgnoreCase("petrol")) {
-            int tempLen = 0;
             if (operation.equalsIgnoreCase("increment")) {
                 assert shed != null;
                 tempLen = shed.getPetrolQueueLength() + 1;
@@ -132,12 +133,11 @@ public class ShedService {
             }
             shed.setPetrolQueueLength(tempLen);
             mongoTemplate.save(shed);
-        } else {
-            int tempLen;
+        } else if (fuelType.equalsIgnoreCase("diesel")){
             if (operation.equalsIgnoreCase("increment")) {
                 assert shed != null;
                 tempLen = shed.getDieselQueueLength() + 1;
-            } else {
+            } else if (operation.equalsIgnoreCase("decrement")){
                 assert shed != null;
                 tempLen = shed.getDieselQueueLength() - 1;
             }
