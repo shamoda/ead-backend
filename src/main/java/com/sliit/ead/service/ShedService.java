@@ -122,8 +122,8 @@ public class ShedService {
     public Shed queueOperation(String regNo, String fuelType, String operation) {
         System.out.println(regNo + "-" + fuelType + "-" + operation);
         Shed shed = mongoTemplate.findOne(Query.query(Criteria.where("_id").is(regNo)), Shed.class);
-        int tempLen = 0;
-        if (fuelType.equalsIgnoreCase("petrol")) {
+        if (fuelType.equalsIgnoreCase("Petrol")) {
+            int tempLen = shed.getPetrolQueueLength();
             if (operation.equalsIgnoreCase("increment")) {
                 assert shed != null;
                 tempLen = shed.getPetrolQueueLength() + 1;
@@ -133,7 +133,8 @@ public class ShedService {
             }
             shed.setPetrolQueueLength(tempLen);
             mongoTemplate.save(shed);
-        } else if (fuelType.equalsIgnoreCase("diesel")){
+        } else if (fuelType.equalsIgnoreCase("Diesel")){
+            int tempLen = shed.getDieselQueueLength();
             if (operation.equalsIgnoreCase("increment")) {
                 assert shed != null;
                 tempLen = shed.getDieselQueueLength() + 1;
@@ -141,7 +142,7 @@ public class ShedService {
                 assert shed != null;
                 tempLen = shed.getDieselQueueLength() - 1;
             }
-            shed.setPetrolQueueLength(tempLen);
+            shed.setDieselQueueLength(tempLen);
             mongoTemplate.save(shed);
         }
         return shed;
