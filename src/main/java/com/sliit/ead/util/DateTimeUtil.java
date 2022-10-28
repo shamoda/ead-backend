@@ -9,7 +9,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateTimeUtil {
     public static String getDateAsString(LocalDateTime dateTime) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        return dateTime.format(format);
+        if (dateTime != null) {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            return dateTime.format(format);
+        }
+        return null;
     }
 }
